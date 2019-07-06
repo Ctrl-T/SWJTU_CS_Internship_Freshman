@@ -10,6 +10,7 @@ class userinfo(models.Model):
     classinfo = models.CharField(max_length=32)
     photo = models.ImageField(upload_to='upload_imag/', default='upload_imag/default.png')
     signature = models.CharField(max_length=256,default='Hello World!')
+    objects = models.Manager()
     def __str__(self):
         return self.name
 
@@ -25,7 +26,7 @@ class post(models.Model):
     ranking = models.IntegerField()
     publish_date = models.DateTimeField()
     modify_date = models.DateTimeField()
-
+    objects = models.Manager()
     def __str__(self):
         return self.title
 
@@ -33,5 +34,6 @@ class post(models.Model):
 class category(models.Model):
     name = models.CharField(max_length=32,primary_key=True)
     admin = models.ForeignKey('userinfo',on_delete=models.CASCADE)
+    objects = models.Manager()
     def __str__(self):
         return self.name

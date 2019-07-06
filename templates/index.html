@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TEST</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/CSS" href="{% static 'css/theme.css' %}">
+</head>
+
+<body>
+    <div class="bkbox"></div>
+    <div class="maincontent">
+        <div>
+            <h1>帖子</h1>
+        </div>
+        <div>
+        {% block postlist %}
+            {% for posts in POST_LIST %}
+                <a href="/post/{{posts.id}}/"> {{posts.title}} </a>
+                <hr />
+            {%endfor%}
+        {% endblock postlist %}
+        </div>
+    </div>
+</body>
