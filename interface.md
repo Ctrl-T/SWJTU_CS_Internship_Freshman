@@ -68,3 +68,9 @@
 
 # 表示当前用户的变量
     user
+#判断登录
+    {% if user.is_authenticated %}
+        {% else %}
+    <p>请先<a href="{% url 'login' %}">登录</a>后方可评论.</p>
+    {% endif %}
+    {% render_comment_list for POST %}

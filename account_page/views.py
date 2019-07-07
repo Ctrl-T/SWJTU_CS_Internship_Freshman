@@ -18,8 +18,13 @@ def register(request):
             department=form.cleaned_data['department']
             classinfo=form.cleaned_data['classinfo']
             user = User.objects.create_user(username=username,password=password,email=email)
-            user_profile = userinfo(user=user,name=name,college=college,department=department,classinfo=classinfo)
-            user_profile.save()
+            userinfo.objects.create(
+                user=user,
+                name=name,
+                college=college,
+                department=department,
+                classinfo=classinfo
+            )
             return HttpResponseRedirect("account/login/")      
     else:
         form = RegistrationForm()

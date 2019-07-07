@@ -5,6 +5,20 @@
     <title>TEST</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/CSS" href="{% static 'css/theme.css' %}">
+    <script src="{% static 'js/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
+    <script>
+
+    tinymce.init({
+        language: 'zh_CN',
+        plugins:'image link emoticons code',
+        toolbar: 'undo redo | bold italic underline strikethrough code| \
+        fontselect fontsizeselect | forecolor backcolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist | outdent indent blockquote | \
+        link unlink image | removeformat',
+        selector: '#mytextarea'
+    });
+    </script>
 </head>
 
 <body>
@@ -17,12 +31,22 @@
                 <h1>帖子</h1>
             {%endif%}
         </div>
+
         <div>
         {% block postlist %}
             {% for posts in POST_LIST %}
                 <a href="/post/{{posts.id}}/"> {{posts.title}} </a>
                 <hr />
             {%endfor%}
+            <div>
+                <form action="/post_sub/" method="post">
+                    {% csrf_token %}
+                    <input type="text" name='title' /> <br />
+                    <textarea name='summary'></textarea> <br />
+                    <textarea id='mytextarea' name='content'> </textarea>
+                    <input type="submit" value="提交"/>
+                </form>    
+            </div>
         {% endblock postlist %}
         </div>
     </div>

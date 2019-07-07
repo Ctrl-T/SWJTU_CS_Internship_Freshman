@@ -3,7 +3,7 @@
     {% block postlist %}
         {{POST.title}}
         <br />
-        {{POST.content}}
+        {{POST.content|safe}}
         {% if user.is_authenticated %}
         {% get_comment_form for POST as form %}
         <table>

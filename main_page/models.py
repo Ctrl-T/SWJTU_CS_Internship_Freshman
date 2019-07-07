@@ -18,14 +18,14 @@ class userinfo(models.Model):
 class post(models.Model):
     title =  models.CharField(max_length=64)
     summary = models.CharField(max_length=256,blank=True)
-    category = models.CharField(max_length=32)
+    category = models.ForeignKey('category',on_delete=models.CASCADE)
     content =  models.TextField()
     view_count = models.IntegerField()
     comment_count = models.IntegerField()
     author = models.ForeignKey('userinfo',on_delete=models.CASCADE)
     ranking = models.IntegerField()
-    publish_date = models.DateTimeField()
-    modify_date = models.DateTimeField()
+    publish_date = models.DateTimeField(auto_now_add=True)
+    modify_date = models.DateTimeField(auto_now=True)
     objects = models.Manager()
     def __str__(self):
         return self.title
