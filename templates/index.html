@@ -43,6 +43,12 @@
                     {% csrf_token %}
                     <input type="text" name='title' /> <br />
                     <textarea name='summary'></textarea> <br />
+                    <select name='category'>
+                        <option value="1">C</option>
+                        <option value="2">C++</option>
+                        <option value="3">Python</option>
+                        <option value="4">Java</option>
+                    </select> <br />
                     <textarea id='mytextarea' name='content'> </textarea>
                     <input type="submit" value="提交"/>
                 </form>    

@@ -4,6 +4,11 @@
     post_tem.html(作为母板)
 # 帖子文件名
     post.html(继承post_tem.html)
+# 注册登录
+    login.html
+    registration.html
+# 注销
+    转到/account/logout
 # js/css/imag路径
     ../js/xxx.js || ../css/xxx.css || ../imag/xxx.jpg
 # 超级用户

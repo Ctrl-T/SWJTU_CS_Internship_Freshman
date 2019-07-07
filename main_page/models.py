@@ -32,7 +32,7 @@ class post(models.Model):
 
 
 class category(models.Model):
-    name = models.CharField(max_length=32,primary_key=True)
+    name = models.CharField(max_length=32,unique=True)
     admin = models.ForeignKey('userinfo',on_delete=models.CASCADE)
     objects = models.Manager()
     def __str__(self):

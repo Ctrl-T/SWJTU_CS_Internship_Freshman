@@ -25,7 +25,7 @@ def register(request):
                 department=department,
                 classinfo=classinfo
             )
-            return HttpResponseRedirect("account/login/")      
+            return HttpResponseRedirect("/account/login/")      
     else:
         form = RegistrationForm()
     return render(request, 'registration.html', {'form': form})
