@@ -65,12 +65,7 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')          
 
-        if email_check(username):
-            filter_result = User.objects.filter(email__exact=username)
-            if not filter_result:
-                raise forms.ValidationError("邮箱不存在")
-        else:
-            filter_result = User.objects.filter(username__exact=username)
-            if not filter_result:
-                raise forms.ValidationError("用户名不存在")
+        filter_result = User.objects.filter(username__exact=username)
+        if not filter_result:
+            raise forms.ValidationError("用户名不存在")
         return username

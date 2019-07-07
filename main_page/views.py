@@ -7,15 +7,16 @@ from .models import post,userinfo,category
 category_list = category.objects.all()
 
 def index(request):
-    post_list = post.objects.all()
-    return render(request,'index.html',{'POST_LIST':post_list,'CATEGORY_LIST':category_list})
+    post_list = post.objects.all()[:20]
+    var={'POST_LIST':post_list,'CATEGORY_LIST':category_list}
+    return render(request,'main_page/index.html',var)
 
 def post_show(request,post_id):
     post_to_show = post.objects.get(id=post_id)
     post_to_show.view_count+=1
     post_to_show.ranking+=1
     post_to_show.save()
-    return render(request,'post.html',{'POST':post_to_show})
+    return render(request,'main_page/post.html',{'POST':post_to_show})
 
 def post_sub(request):
     content=request.POST.get('content')
@@ -37,4 +38,5 @@ def post_sub(request):
 
 def category_show(request,category_id):
     post_list = post.objects.filter(category__id=category_id)
-    return render(request,'category.html',{'POST_LIST':post_list,'CATEGORY_LIST':category_list})
+    var={'POST_LIST':post_list,'CATEGORY_LIST':category_list}
+    return render(request,'main_page/category.html',var)

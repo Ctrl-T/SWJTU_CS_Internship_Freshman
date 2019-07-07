@@ -30,6 +30,23 @@ class post(models.Model):
     def __str__(self):
         return self.title
 
+class post_like(models.Model):
+    post = models.OneToOneField(post,on_delete=models.CASCADE)
+    like_user = models.OneToOneField(userinfo,on_delete=models.CASCADE)
+    like_time = models.DateTimeField(auto_now_add=True)
+    objects = models.Manager()
+
+class post_like_count(models.Model):
+    post = models.OneToOneField(post,on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+    objects = models.Manager()
+
+class post_tag(models.Model):
+    tag_name = models.CharField(max_length=16)
+    posts = models.ManyToManyField(post)
+    objects = models.Manager()
+    def __str__(self):
+        return self.tag_name
 
 class category(models.Model):
     name = models.CharField(max_length=32,unique=True)

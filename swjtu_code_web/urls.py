@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main_page.urls')),
     path('account/',include('account_page.urls')),
+    path('u/',include('my_page.urls')),
     path('comments/', include('django_comments.urls')),
 ]

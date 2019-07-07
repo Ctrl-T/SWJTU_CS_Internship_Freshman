@@ -1,10 +1,11 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.models import User
 from main_page.models import userinfo
 from .forms import RegistrationForm,LoginForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from my_page.models import homepage
 
 def register(request):
     if request.method == 'POST':
@@ -18,17 +19,20 @@ def register(request):
             department=form.cleaned_data['department']
             classinfo=form.cleaned_data['classinfo']
             user = User.objects.create_user(username=username,password=password,email=email)
-            userinfo.objects.create(
+            homepage_onwer = userinfo.objects.create(
                 user=user,
                 name=name,
                 college=college,
                 department=department,
                 classinfo=classinfo
             )
+            homepage.objects.create(
+                owner=homepage_onwer,
+            )
             return HttpResponseRedirect("/account/login/")      
     else:
         form = RegistrationForm()
-    return render(request, 'registration.html', {'form': form})
+    return render(request, 'account_page/registration.html', {'form': form})
 
 def login(request):
     if request.method == 'POST':
@@ -43,10 +47,10 @@ def login(request):
                 auth.login(request,user)
                 return HttpResponseRedirect("/")
             else:
-                return render(request,'login.html',{'form':form,'message':'密码或用户名错误'})
+                return render(request,'account_page/login.html',{'form':form,'message':'密码或用户名错误'})
     else:
         form = LoginForm()
-    return render(request,'login.html',{'form':form})
+    return render(request,'account_page/login.html',{'form':form})
 
 def logout(request):
     auth.logout(request)
