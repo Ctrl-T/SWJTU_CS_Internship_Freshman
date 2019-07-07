@@ -12,6 +12,11 @@
 # 数据库
     root
     2333666
+# 板块列表变量
+    CATEGORY_LIST
+## 板块变量成员
+    -id(返回给后端)
+    -name
 
 # 存放帖子的列表变量名
     POST_LIST
@@ -68,7 +73,7 @@
 
 # 表示当前用户的变量
     user
-#判断登录
+# 判断登录
     {% if user.is_authenticated %}
         {% else %}
     <p>请先<a href="{% url 'login' %}">登录</a>后方可评论.</p>

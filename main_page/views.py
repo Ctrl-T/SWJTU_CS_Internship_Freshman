@@ -33,7 +33,7 @@ def post_sub(request):
     )
     return HttpResponseRedirect("/")
 
-def category_show(request,category_name):
-    category_to_show = category.objects.get(name=category_name)
+def category_show(request,category_id):
+    category_to_show = category.objects.get(id=category_id)
     post_list = post.objects.get(category=category_to_show)
     return render(request,'category.html',{'POST_LIST':post_list})
