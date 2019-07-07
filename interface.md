@@ -1,20 +1,20 @@
 # 首页名称
-index.html
+    index.html
 # 帖子模板文件名称
-post_tem.html(作为母板)
+    post_tem.html(作为母板)
 # 帖子文件名
-post.html(继承post_tem.html)
+    post.html(继承post_tem.html)
 # js/css/imag路径
-../js/xxx.js || ../css/xxx.css || ../imag/xxx.jpg
+    ../js/xxx.js || ../css/xxx.css || ../imag/xxx.jpg
 # 超级用户
-用户名：admin_coder
-密码：qwe2333666
+    用户名：admin_coder
+    密码：qwe2333666
 # 数据库
-root
-2333666
+    root
+    2333666
 
 # 存放帖子的列表变量名
-POST_LIST
+    POST_LIST
 ## 成员变量
     -title
     -summary
@@ -30,9 +30,9 @@ POST_LIST
     -index.html
 
 # 后端返回给post.html的符合id要求帖子变量名
-POST
+    POST
 # 帖子显示路径
-   /post/{{变量名.id}}/
+    /post/{{变量名.id}}/
 # 快速显示评论
     首先{% load comments %}
     在需要的地方显示{% render_comment_list for POST%}
@@ -49,7 +49,7 @@ POST
     {% get_comment_count for POST as comment_count %}
     This entry has {{ comment_count }} comments.
 # 添加评论
-   大致模板：参考：https://www.cnblogs.com/feixuelove1009/p/8000556.html
+    大致模板：参考：https://www.cnblogs.com/feixuelove1009/p/8000556.html
     {% get_comment_form for POST as form %}
         <table>
           <form action="{% comment_form_target %}" method="post"> （这句话不可改变）
@@ -64,4 +64,7 @@ POST
                 <input type="submit" value="提交评论" id="id_submit" />
         </table>
 # 当前帖子地址变量：
-{% url 'curr_post' POST.id %}
+    {% url 'curr_post' POST.id %}
+
+# 表示当前用户的变量
+    user

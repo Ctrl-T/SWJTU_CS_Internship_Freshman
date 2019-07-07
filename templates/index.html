@@ -11,7 +11,11 @@
     <div class="bkbox"></div>
     <div class="maincontent">
         <div>
-            <h1>帖子</h1>
+            {% if user.is_authenticated %}
+                <h1>{{user.username}}</h1>
+            {%else%}
+                <h1>帖子</h1>
+            {%endif%}
         </div>
         <div>
         {% block postlist %}

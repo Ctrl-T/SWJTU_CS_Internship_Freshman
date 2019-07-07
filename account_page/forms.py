@@ -40,7 +40,7 @@ class RegistrationForm(forms.Form):
            raise forms.ValidationError("请输入合法邮箱")
        return email
 
-    def clean_password1(self):
+    def clean_password(self):
         password = self.cleaned_data.get('password')
 
         if len(password) < 6:
@@ -49,7 +49,7 @@ class RegistrationForm(forms.Form):
             raise forms.ValidationError("密码太长.")
         return password
 
-    def clean_password2(self):
+    def clean_cf_password(self):
         password = self.cleaned_data.get('password')
         cf_password = self.cleaned_data.get('cf_password')
 

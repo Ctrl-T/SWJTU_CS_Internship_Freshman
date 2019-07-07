@@ -18,7 +18,7 @@
                 <input type="submit" value="提交评论" id="id_submit" />
         </table>
         {% else %}
-        <p>请先<a href="{% url 'auth_login' %}">登录</a>后方可评论.</p>
+        <p>请先<a href="{% url 'login' %}">登录</a>后方可评论.</p>
         {% endif %}
         {% render_comment_list for POST %}
     {% endblock postlist %}
