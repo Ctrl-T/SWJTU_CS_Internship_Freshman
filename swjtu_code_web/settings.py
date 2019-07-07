@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_page',
+    'account_page',
     'django.contrib.sites',
     'django_comments',
 ]
@@ -82,7 +83,7 @@ DATABASES = {
         'NAME': 'swjtu_code_web_mainDB',
         'USER': 'root',
         'PASSWORD': '2333666',
-        'HOST': '192.168.12.108',
+        'HOST': 'localhost',#'192.168.12.108',
         'PORT': '3306'
     }
 }
