@@ -5,19 +5,21 @@
     <title>TEST</title>
     {% load staticfiles %}
     {% load paginator_tag %}
-    <link rel="stylesheet" type="text/CSS" href="{% static 'css/theme.css' %}">
+    <!--link rel="stylesheet" type="text/CSS" href="{% static 'css/theme.css' %}"-->
+    <link rel="stylesheet" type="text/css" href={% static 'css/prism.css' %}>
+    <script src={% static 'js/prism.js' %}></script>
     <script src="{% static 'js/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
     <script>
 
     tinymce.init({
         language: 'zh_CN',
-        plugins:'image link emoticons code',
-        toolbar: 'undo redo | bold italic underline strikethrough code| \
+        plugins:'image link emoticons code codesample',
+        toolbar: 'undo redo | bold italic underline strikethrough code emoticons codesample | \
         fontselect fontsizeselect | forecolor backcolor | \
         alignleft aligncenter alignright alignjustify | \
         bullist numlist | outdent indent blockquote | \
         link unlink image | removeformat',
-        selector: '#mytextarea'
+        selector: '#id_comment'
     });
     </script>
 </head>
@@ -68,7 +70,7 @@
                         <option value="3">Python</option>
                         <option value="4">Java</option>
                     </select> <br />
-                    <textarea id='mytextarea' name='content'> </textarea>
+                    <textarea id='id_comment' name='content'> </textarea>
                     <input type="submit" value="提交"/>
                 </form>    
             </div>
