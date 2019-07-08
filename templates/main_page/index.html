@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>TEST</title>
     {% load staticfiles %}
+    {% load paginator_tag %}
     <link rel="stylesheet" type="text/CSS" href="{% static 'css/theme.css' %}">
     <script src="{% static 'js/tinymce/tinymce.min.js' %}" referrerpolicy="origin"></script>
     <script>
@@ -34,10 +35,28 @@
 
         <div>
         {% block postlist %}
-            {% for posts in POST_LIST %}
+            {% for posts in CURR_PAGE %}
                 <a href="/post/{{posts.id}}/"> {{posts.title}} </a>
                 <hr />
             {%endfor%}
+
+            <nav>
+
+                <ul>
+                {% if CURR_PAGE.has_previous %}
+                  <li ><a href="?page={{ CURR_PAGE.previous_page_number }}">上一页</a></li>
+                {% endif %}
+          
+                {% PAGINATION CURR_PAGE PAGINATOR 10 4 as page_list %}  <!-- 引用自定义标签，并传入参数 -->
+          
+                {{ page_list|safe }}  <!--  显示 -->
+          
+                {% if CURR_PAGE.has_next %}
+                  <li><a href="?page={{ CURR_PAGE.next_page_number }}">下一页</a></li>
+                {% endif %}
+                </ul>         
+           </nav>
+
             <div>
                 <form action="/post_sub/" method="post">
                     {% csrf_token %}

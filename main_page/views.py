@@ -2,13 +2,27 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import post,userinfo,category
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 # Create your views here.
 
 category_list = category.objects.all()
 
 def index(request):
-    post_list = post.objects.all()[:20]
-    var={'POST_LIST':post_list,'CATEGORY_LIST':category_list}
+    post_list = post.objects.all()
+    paginator = Paginator(post_list,20)
+    curr_page_num = request.GET.get('page')
+    try:
+        curr_page = paginator.page(curr_page_num)
+    except PageNotAnInteger:
+        curr_page = paginator.page(1)
+    except EmptyPage:
+        curr_page = paginator.page(paginator.num_pages)
+    var={
+        'POST_LIST':post_list,
+        'CATEGORY_LIST':category_list,
+        'CURR_PAGE':curr_page,
+        'PAGINATOR':paginator
+    }
     return render(request,'main_page/index.html',var)
 
 def post_show(request,post_id):
