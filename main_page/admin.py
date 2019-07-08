@@ -10,3 +10,4 @@ class post_show(admin.ModelAdmin):
 admin.site.register(models.userinfo)
 admin.site.register(models.post,post_show)
 admin.site.register(models.category)
+admin.site.register(models.post_tag)
